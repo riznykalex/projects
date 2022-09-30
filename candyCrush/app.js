@@ -3,13 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const width = 8
     const squares = []
     const candyColors = [
-        
+        'red',
+        'yellow',
+        'orange',
+        'green',
+        'blue',
+        'purple'
     ]
 //board
 function createBoard() {
 for (let i = 0; i < width*width; i++){
     const square = document.createElement('div')
-    console.log(grid)
+    let randomColor = Math.floor (Math.random() * candyColors.length)
+    console.log(randomColor)
     grid.appendChild(square)
     squares.push(square)
     }
