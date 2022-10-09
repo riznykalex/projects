@@ -1,0 +1,15 @@
+.grid {
+    height: 430px;
+    width: 430px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.grid div {
+    position: relative;
+    height: 80px;
+    width: 80px;
+    border: 3px solid #ccc;
+    touch-action: none 
+}

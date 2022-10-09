@@ -1,6 +1,6 @@
 .grid {
-    height: 560px;
-    width: 560px;
+    height: 608px;
+    width: 608px;
     display: flex;
     flex-wrap: wrap;
 
@@ -9,4 +9,5 @@
 .grid div {
     height: 70px;
     width: 70px;
+    border: 3px solid #ccc;
 }
