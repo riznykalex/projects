@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <style>
+        #weather {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            transition: background-color 0.5s ease;
+            border-radius: 50%
+        }
+    </style>
+</head>
+
+<body>
+
+    <style>
+        #weather {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            transition: background-color 0.5s ease;
+        }
+    </style>
+
+    <div id="weather"></div>
+
+    <script>
+        // Get user's location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getWeather);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+
+        // Get weather data from API
+        function getWeather(position) {
+            const API_KEY = "Y85G2Z8PAZQKT3MUQWCGFNFFW";
+            const LATITUDE = position.coords.latitude;
+            const LONGITUDE = position.coords.longitude;
+            const URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${LATITUDE},${LONGITUDE}?key=${API_KEY}&unitGroup=metric&include=current`;
+
+            fetch(URL)
+                .then((response) => response.json())
+                .then((data) => {
+                    const currentConditions = data.currentConditions;
+
+                    // Display current temperature in Celsius
+                    const temperature = currentConditions.temp;
+                    const weatherDiv = document.getElementById("weather");
+                    weatherDiv.innerHTML = `${temperature} &#8451;`;
+
+                    // Change background color of weather div based on temperature
+                    const color =
+                        temperature <= -20 ?
+                        "blue" :
+                        temperature >= 40 ?
+                        "red" :
+                        `rgb(${255 - (temperature + 20) * 6.375}, ${255 - (temperature + 20) * 6.375}, 255)`;
+                    weatherDiv.style.backgroundColor = color;
+                })
+                .catch((error) => console.error(error));
+        }
+    </script>
+</body>
+</html>
